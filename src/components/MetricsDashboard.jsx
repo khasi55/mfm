@@ -319,6 +319,12 @@ export default function MetricsDashboard() {
           }
         }
 
+        @media (max-width: 480px) {
+          .dashboard-control-panel {
+            padding: 1.5rem 1rem;
+          }
+        }
+
         /* Control Panel Styles */
         .dashboard-control-panel {
           background-color: var(--bg-secondary);
@@ -465,6 +471,22 @@ export default function MetricsDashboard() {
           justify-content: space-between;
           box-shadow: var(--shadow-lux);
           position: relative;
+        }
+
+        @media (max-width: 480px) {
+          .dashboard-chart-canvas {
+            padding: 1.5rem 1rem;
+          }
+          .chart-canvas-header {
+            flex-direction: column;
+            gap: 1rem;
+          }
+          .canvas-stats {
+            align-items: flex-start;
+          }
+          .canvas-big-val {
+            font-size: 2rem;
+          }
         }
 
         .chart-canvas-header {

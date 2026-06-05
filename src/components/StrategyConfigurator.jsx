@@ -300,6 +300,12 @@ export default function StrategyConfigurator() {
           }
         }
 
+        @media (max-width: 480px) {
+          .configurator-wrapper {
+            padding: 1.25rem 1rem;
+          }
+        }
+
         .panel-title {
           font-family: var(--font-sans);
           font-size: 1rem;
@@ -448,6 +454,13 @@ export default function StrategyConfigurator() {
           grid-template-columns: repeat(3, 1fr);
           gap: 1rem;
           margin-bottom: 2.5rem;
+        }
+
+        @media (max-width: 550px) {
+          .results-stats-row {
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+          }
         }
 
         .result-stat-box {

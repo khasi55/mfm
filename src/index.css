@@ -234,6 +234,17 @@ p {
   }
 }
 
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 2.05rem;
+  }
+  .btn {
+    padding: 0.9rem 1.8rem;
+    font-size: 0.775rem;
+    letter-spacing: 0.1em;
+  }
+}
+
 .section-subtitle {
   font-size: 1.15rem;
   color: var(--text-muted);

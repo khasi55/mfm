@@ -360,7 +360,10 @@ export default function ContactPlanner() {
 
         @media (max-width: 600px) {
           .planner-card, .success-panel {
-            padding: 2rem 1.5rem;
+            padding: 2rem 1.25rem;
+          }
+          .indicator-label {
+            display: none;
           }
         }
 
