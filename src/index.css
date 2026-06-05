@@ -1,0 +1,507 @@
+/* MFM Growth Partners - Global Design System */
+
+:root {
+  /* Colors */
+  --bg-primary: #0a0908;
+  --bg-secondary: #11100e;
+  --bg-tertiary: #181714;
+  
+  --text-primary: #f4efe1;
+  --text-secondary: #d3caa9;
+  --text-muted: #9b9370;
+  
+  --gold-light: #231e15;
+  --gold-medium: #ad8b54;
+  --gold-dark: #d1b685;
+  --gold-deep: #654e28;
+  --gold-accent: #b5904f;
+  
+  /* Gradients */
+  --gold-gradient: linear-gradient(135deg, #ad8b54 0%, #8c6c3a 50%, #654e28 100%);
+  --gold-gradient-hover: linear-gradient(135deg, #ffffff 0%, #ad8b54 50%, #8c6c3a 100%);
+  --gold-text-gradient: linear-gradient(135deg, #e8dbbf 0%, #ad8b54 50%, #8c6c3a 100%);
+  --dark-gradient: linear-gradient(135deg, #1c1917 0%, #2b2925 100%);
+  --white-gradient: linear-gradient(180deg, #11100e 0%, #0a0908 100%);
+  
+  /* Borders and Shadows */
+  --border-gold: rgba(173, 139, 84, 0.15);
+  --border-gold-strong: rgba(173, 139, 84, 0.35);
+  --shadow-subtle: rgba(0, 0, 0, 0.5) 0px 4px 20px 0px;
+  --shadow-medium: rgba(0, 0, 0, 0.35) 0px 10px 30px -10px, rgba(0, 0, 0, 0.15) 0px 1px 3px;
+  --shadow-lux: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+  
+  /* Fonts */
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  
+  /* Layout */
+  --max-width: 1280px;
+  --header-height: 80px;
+  
+  /* Transitions */
+  --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: all 0.25s ease-out;
+}
+
+body.light-theme {
+  --bg-primary: #fbfbf9;
+  --bg-secondary: #f4f2eb;
+  --bg-tertiary: #eae7de;
+  
+  --text-primary: #1a1714;
+  --text-secondary: #4a4537;
+  --text-muted: #7c7255;
+  
+  --gold-light: #f6efe0;
+  --gold-medium: #ad8b54;
+  --gold-dark: #8c6c3a;
+  --gold-deep: #544122;
+  --gold-accent: #b5904f;
+  
+  --gold-gradient: linear-gradient(135deg, #b5904f 0%, #8c6c3a 50%, #544122 100%);
+  --gold-gradient-hover: linear-gradient(135deg, #1a1714 0%, #b5904f 50%, #8c6c3a 100%);
+  --gold-text-gradient: linear-gradient(135deg, #8c6c3a 0%, #ad8b54 50%, #544122 100%);
+  --dark-gradient: linear-gradient(135deg, #f4f2eb 0%, #eae7de 100%);
+  --white-gradient: linear-gradient(180deg, #f4f2eb 0%, #fbfbf9 100%);
+  
+  --border-gold: rgba(173, 139, 84, 0.25);
+  --border-gold-strong: rgba(173, 139, 84, 0.45);
+  --shadow-subtle: rgba(173, 139, 84, 0.05) 0px 4px 20px 0px;
+  --shadow-medium: rgba(0, 0, 0, 0.05) 0px 10px 30px -10px, rgba(173, 139, 84, 0.03) 0px 1px 3px;
+  --shadow-lux: 0 20px 40px -15px rgba(173, 139, 84, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  /* Layered fixed Golden Spotlight and scrolling dot grid */
+  background-image: 
+    radial-gradient(var(--border-gold) 1.2px, transparent 1.2px),
+    radial-gradient(circle at 50% 0%, #1c150c 0%, #0a0908 50%, #050404 100%);
+  background-size: 30px 30px, 100% 100%;
+  background-attachment: scroll, fixed;
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.light-theme {
+  background-image: 
+    radial-gradient(var(--border-gold) 1.2px, transparent 1.2px),
+    radial-gradient(circle at 50% 0%, #fefcf9 0%, #f4f2ee 50%, #eae7de 100%);
+}
+
+/* Decorative background light spots */
+.glow-blob {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(173, 139, 84, 0.07) 0%, rgba(255, 255, 255, 0) 70%);
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Typography */
+h1, h2, h3, h4, .font-serif {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+p {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.gold-text {
+  background: var(--gold-text-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.gold-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 1.25rem;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-gold-strong);
+  color: var(--gold-dark);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  border-radius: 0;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.gold-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transform: translateX(-100%);
+  animation: badgeShine 4s infinite linear;
+}
+
+@keyframes badgeShine {
+  0% { transform: translateX(-100%); }
+  35%, 100% { transform: translateX(100%); }
+}
+
+/* Luxury Dividers */
+.luxury-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1.5rem 0;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.luxury-divider-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-gold-strong), transparent);
+  flex-grow: 1;
+  max-width: 120px;
+}
+
+.luxury-divider-diamond {
+  width: 8px;
+  height: 8px;
+  background-color: var(--gold-medium);
+  transform: rotate(45deg);
+  border: 1px solid var(--gold-dark);
+}
+
+/* Layout Utilities */
+.section {
+  padding: 8.5rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 5.5rem 1.25rem;
+  }
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 5;
+}
+
+.section-title-wrapper {
+  text-align: center;
+  max-width: 750px;
+  margin: 0 auto 5rem auto;
+}
+
+.section-title {
+  font-size: 3.8rem;
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.01em;
+  font-weight: 400;
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2.8rem;
+  }
+}
+
+.section-subtitle {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+/* Premium Buttons with sweep animations */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.05rem 2.5rem;
+  font-size: 0.825rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  border-radius: 0;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+/* Sweep shine effect */
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transform: skewX(-20deg);
+  transition: 0.75s;
+}
+
+.btn:hover::after {
+  left: 150%;
+}
+
+.btn-primary {
+  background: var(--dark-gradient);
+  color: var(--bg-primary);
+  border: 1px solid var(--text-primary);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(28, 25, 23, 0.15);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-gold-strong);
+}
+
+.btn-secondary:hover {
+  background: var(--bg-secondary);
+  border-color: var(--gold-medium);
+  color: var(--gold-deep);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(173, 139, 84, 0.05);
+}
+
+.btn-gold {
+  background: var(--gold-gradient);
+  color: var(--text-primary);
+  border: 1px solid var(--gold-medium);
+  text-shadow: 0 0.5px 1px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 15px rgba(173, 139, 84, 0.1);
+}
+
+.btn-gold:hover {
+  background: var(--dark-gradient);
+  color: #ffffff;
+  border-color: var(--text-primary);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lux);
+}
+
+/* Animation utilities */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGold {
+  0% {
+    box-shadow: 0 0 0 0 rgba(173, 139, 84, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(173, 139, 84, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(173, 139, 84, 0);
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gold-medium);
+  border-radius: 0px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-dark);
+}
+
+/* Light Theme Component Overrides */
+body.light-theme .btn-primary {
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  border-color: var(--text-primary);
+}
+body.light-theme .btn-primary:hover {
+  background: transparent;
+  color: var(--text-primary);
+}
+body.light-theme .btn-gold {
+  color: #ffffff;
+  text-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.3);
+}
+body.light-theme .btn-gold:hover {
+  background: var(--text-primary);
+  color: #ffffff;
+  border-color: var(--text-primary);
+}
+body.light-theme .btn-next {
+  background: var(--text-primary);
+  color: var(--bg-primary);
+}
+body.light-theme .btn-next:disabled {
+  background: var(--bg-tertiary);
+  color: var(--text-muted);
+}
+body.light-theme .btn-submit {
+  color: #ffffff;
+}
+body.light-theme .btn-submit:hover {
+  background: var(--text-primary);
+  color: #ffffff;
+  border-color: var(--text-primary);
+}
+
+body.light-theme .chart-tooltip {
+  background: var(--text-primary) !important;
+  color: var(--bg-primary) !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+}
+body.light-theme .tooltip-lbl {
+  color: rgba(255, 255, 255, 0.65) !important;
+}
+body.light-theme .tooltip-val {
+  color: var(--gold-medium) !important;
+}
+
+body.light-theme .header.scrolled {
+  background-color: rgba(251, 251, 249, 0.88) !important;
+  border-bottom: 1px solid var(--border-gold);
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.02);
+}
+
+body.light-theme .hero-stat-card {
+  background-color: rgba(244, 242, 235, 0.6);
+}
+body.light-theme .hero-stat-card:hover {
+  background-color: rgba(251, 251, 249, 0.95);
+}
+
+body.light-theme .logo-mark {
+  background-color: var(--bg-primary);
+}
+
+body.light-theme .strategy-card:hover {
+  background-color: var(--bg-primary);
+}
+body.light-theme .strategy-card.active {
+  background-color: var(--bg-primary);
+}
+
+body.light-theme .case-select-card {
+  background-color: var(--bg-primary);
+}
+body.light-theme .case-select-card.active {
+  background-color: var(--gold-light);
+}
+body.light-theme .case-showcase-card {
+  background-color: var(--bg-primary);
+}
+
+body.light-theme .showcase-brief {
+  background-color: var(--bg-secondary);
+}
+
+body.light-theme .dashboard-chart-canvas {
+  background-color: var(--bg-primary);
+}
+
+body.light-theme .strategy-configurator-card {
+  background-color: var(--bg-secondary);
+}
+body.light-theme .configurator-input-panel {
+  background-color: var(--bg-primary);
+}
+body.light-theme .option-btn:hover {
+  background-color: var(--bg-secondary);
+}
+body.light-theme .option-btn.selected {
+  background-color: var(--gold-light);
+}
+
+body.light-theme .step-card {
+  background-color: var(--bg-primary);
+}
+body.light-theme .readiness-card {
+  background-color: var(--bg-primary);
+}
+body.light-theme .success-advice-report {
+  background-color: var(--bg-primary);
+}
+body.light-theme .form-text-input {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+}
+body.light-theme .form-text-input:focus {
+  background-color: var(--bg-primary) !important;
+}
+body.light-theme .wizard-select-card {
+  background-color: var(--bg-primary) !important;
+}
+body.light-theme .wizard-select-card:hover {
+  background-color: var(--bg-secondary) !important;
+}
+body.light-theme .wizard-select-card.selected {
+  background-color: var(--gold-light) !important;
+}
+
